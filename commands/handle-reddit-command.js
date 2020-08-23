@@ -1,3 +1,4 @@
+const {sendMessage} = require("../util/messageUtil.js")
 const snoowrap = require('snoowrap');
 
 const r = new snoowrap({
@@ -7,6 +8,12 @@ const r = new snoowrap({
   username: 'paulosar',
   password: 'brthdy0025'
 });
+
+function getReddit(message, subreddit, customMessage){
+  r.getSubreddit(subreddit).getRandomSubmission().then(submission => {
+    sendMessage(message, customMessage + submission.url)
+  })
+}
 
 function showBoobs(callback) {
   r.getSubreddit('boobs').getRandomSubmission().then(submission => {
@@ -41,12 +48,15 @@ function plug(callback){
 }
 
 function moan(message) {
-  console.log(message.member.voice.channel)
   var voiceChannel = message.member.voice.channel;
 
+  if(voiceChannel == null){
+    sendMessage("Você não ta em nenhum canal de voz seu incopetente")
+  }
+  sendMessage("Se prepare onii-chan")
   voiceChannel.join().then(connection => { 
       console.log("playing")
-      const dispatcher = connection.play(__dirname + '/yammete.mp3');
+      const dispatcher = connection.play(__dirname + '/resources/yammete.mp3');
       dispatcher.on("finish", end => {
         console.log("ended")
         voiceChannel.leave()
@@ -62,5 +72,6 @@ module.exports = {
   showYaoi,
   moan,
   butt,
-  plug
+  plug,
+  getReddit
 }

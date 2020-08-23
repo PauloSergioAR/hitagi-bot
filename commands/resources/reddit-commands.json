@@ -1,0 +1,49 @@
+{
+  "messages": {
+    "show me boobs": {
+      "function": "getReddit",
+      "subreddit": "boobs",
+      "customMessage": ""
+    },
+    "me mostre peitos": {
+      "function": "getReddit",
+      "subreddit": "boobs",
+      "customMessage": ""
+    },
+    "me agrade":{
+      "function": "getReddit",
+      "subreddit": "hentai",
+      "customMessage": ""
+    },
+    "acorde a Elizabeth": {
+      "function": "getReddit",
+      "subreddit": "yaoi",
+      "customMessage": ""
+    },
+    "agrade a Maryanne": {
+      "function": "getReddit",
+      "subreddit": "yaoi",
+      "customMessage": ""
+    },
+    "me mostre algo gostoso": {
+      "function": "getReddit",
+      "subreddit": "yaoi",
+      "customMessage": ""
+    },
+    "me mostre bunda": {
+      "function": "getReddit",
+      "subreddit": "ass",
+      "customMessage": ""
+    },
+    "me mostre a raba": {
+      "function": "getReddit",
+      "subreddit": "ass",
+      "customMessage": ""
+    },
+    "me mostre um plug": {
+      "function": "getReddit",
+      "subreddit": "buttplug",
+      "customMessage": ""
+    }
+  }
+}
