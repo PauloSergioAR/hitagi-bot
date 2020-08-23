@@ -26,12 +26,32 @@ function showYaoi(callback) {
   })
 }
 
+function butt(callback){
+  r.getSubreddit('ass').getRandomSubmission().then(submission => {
+    //string = "E-espero que goste Mary-senpai :flushed: \n"
+    callback(submission.url)
+  })
+}
+
+function plug(callback){
+  r.getSubreddit('buttplug').getRandomSubmission().then(submission => {
+    //string = "E-espero que goste Mary-senpai :flushed: \n"
+    callback(submission.url)
+  })
+}
+
 function moan(message) {
+  console.log(message.member.voice.channel)
   var voiceChannel = message.member.voice.channel;
 
   voiceChannel.join().then(connection => { 
-      const dispatcher = connection.play('../public/yammete.mp3');
-      dispatcher.on("end", end => voiceChannel.leave()) 
+      console.log("playing")
+      const dispatcher = connection.play(__dirname + '/yammete.mp3');
+      dispatcher.on("finish", end => {
+        console.log("ended")
+        voiceChannel.leave()
+      })
+      
     })
     .catch(err => console.log(err));
 }
@@ -40,5 +60,7 @@ module.exports = {
   showBoobs,
   showHentai,
   showYaoi,
-  moan
+  moan,
+  butt,
+  plug
 }

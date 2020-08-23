@@ -27,17 +27,17 @@ async function handleCommand(client, message) {
   }
 
   function checkCommandMessages(commandMessage) {
-    let foundCommand = false
+    
     let matches = stringSimilarity.findBestMatch(commandMessage, Object.keys(commands.messages))
     if (matches.bestMatch.rating > .7) {
       if(commands.messages[matches.bestMatch.target].includes("moan")){
         require('./handle-reddit-command.js')["moan"].call(this, message)
         sendMessage("Se prepare onii-chan")
+      } else {
+        res = require('./handle-reddit-command.js')[commands.messages[matches.bestMatch.target]].call(this, (response) => {
+          sendMessage(response)
+        })
       }
-      res = require('./handle-reddit-command.js')[commands.messages[matches.bestMatch.target]].call(this, (response) => {
-        sendMessage(response)
-      })
-
       return true
     }
     return false
