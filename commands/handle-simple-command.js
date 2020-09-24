@@ -6,7 +6,9 @@ const stringSimilarity = require("string-similarity");
 
 async function handleCommand(client, message) {
   let command = message.content.replace(config.prefix, "");
-
+  command = command.replace(config.prefix2, "");
+  console.log(config)
+  console.log(command)
   if (checkDefaultMessages(command)) {
     return;
   } else if (checkCommandMessages(command)) {
@@ -29,11 +31,14 @@ async function handleCommand(client, message) {
   function checkCommandMessages(commandMessage) {
     
     let matches = stringSimilarity.findBestMatch(commandMessage, Object.keys(commands.messages))
+    console.log(matches.bestMatch.rating)
     if (matches.bestMatch.rating > .7) {
       if(commands.messages[matches.bestMatch.target].includes("moan")){
+        console.log("moaning")
         require('./handle-reddit-command.js')["moan"].call(this, message)
-        sendMessage("Se prepare onii-chan")
+//        sendMessage("Se prepare onii-chan")
       } else {
+	console.log("sending reddit command")
         res = require('./handle-reddit-command.js')[commands.messages[matches.bestMatch.target]].call(this, (response) => {
           sendMessage(response)
         })

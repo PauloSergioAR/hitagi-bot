@@ -18,7 +18,7 @@ Discord.js
 const client = new Discord.Client(); //Criação de um novo Client
 const config = require("./config.json"); //Pegando o prefixo do bot para respostas de comandos
 
-client.login(""); //Ligando o Bot caso ele consiga acessar o token
+client.login("NzQ1MDcwMjA0ODM2MzgwNjky.Xzsasw.2iY7butSdWDdZXoHrZJjD9YEh0Q"); //Ligando o Bot caso ele consiga acessar o token
 
 client.on("message", async message => {
   console.log(message.content)
@@ -26,7 +26,8 @@ client.on("message", async message => {
   if (message.channel.type === "dm") return;
 
   try {
-    if (message.content.startsWith(config.prefix)) {
+    
+    if (message.content.startsWith(config.prefix) || message.content.startsWith(config.prefix2)) {
       console.log("prefixo ok")
       return handleCommand(client, message);
     }

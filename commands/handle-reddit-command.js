@@ -10,8 +10,10 @@ const r = new snoowrap({
 
 function showBoobs(callback) {
   r.getSubreddit('boobs').getRandomSubmission().then(submission => {
-    string = "A-aqui vai onii-chan :point_right::point_left:\n"
-    callback(string + submission.url)
+    console.log(submission)
+    //string = "A-aqui vai onii-chan :point_right::point_left:\n"
+    callback(submission.url)
+    callback(submission)
   })
 }
 
@@ -44,16 +46,21 @@ function moan(message) {
   console.log(message.member.voice.channel)
   var voiceChannel = message.member.voice.channel;
 
-  voiceChannel.join().then(connection => { 
-      console.log("playing")
-      const dispatcher = connection.play(__dirname + '/yammete.mp3');
-      dispatcher.on("finish", end => {
-        console.log("ended")
-        voiceChannel.leave()
-      })
+  if(voiceChannel){
+    message.channel.send("Se prepare onii-chan")
+    voiceChannel.join().then(connection => { 
+        console.log("playing")
+        const dispatcher = connection.play(__dirname + '/yammete.mp3');
+        dispatcher.on("finish", end => {
+          console.log("ended")
+          voiceChannel.leave()
+        })
       
-    })
-    .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  } else {
+    message.channel.send("Você não esta em nenhum canal de voz imprestavel :rolling_eyes:")
+  }
 }
 
 module.exports = {
