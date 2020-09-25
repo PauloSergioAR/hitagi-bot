@@ -1,0 +1,14 @@
+{
+    "messages": {
+        "acorde o Lucas": {
+            "function": "playAudio",
+            "audioFile": "yammete.mp3",
+            "customResponse": ":point_right::point_left:"
+        },
+        "geme pra mim": {
+            "function": "playAudio",
+            "audioFile": "yammete.mp3",
+            "customResponse": ":point_right::point_left:"
+        }
+    }
+}
