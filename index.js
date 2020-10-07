@@ -20,7 +20,7 @@ Discord.js
 const client = new Discord.Client()
 const config = require("./util/config.json")
 
-client.login(""); //Ligando o Bot caso ele consiga acessar o token
+client.login(process.env.TOKEN); //Ligando o Bot caso ele consiga acessar o token
 
 client.on("message", async message => {
   if (message.author.bot) return

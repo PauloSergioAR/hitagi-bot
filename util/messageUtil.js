@@ -7,6 +7,30 @@ function sendMessage(message, messageToSend) {
     message.channel.send(messageToSend);
 }
 
+function handleHelp(discordMessage){
+    let message = ""
+
+    message += "Comandos do reddit:\n\n"
+    Object.keys(redditCommands.messages).forEach((command) => {
+        if(redditCommands.messages[command].description){
+            message += command + " -> " + redditCommands.messages[command].description + "\n"
+        }
+    })
+
+    message += "\nMensagens fixas:\n\n"
+    Object.keys(fixed_messages.answers_list).forEach((command) => {
+        message += command + "\n"
+    })
+
+    message += "\nMensagens de audio:\n\n"
+    Object.keys(audioCommands.messages).forEach((command) => {
+        if(audioCommands.messages[command].description){
+            message += command + " -> " + audioCommands.messages[command].description + "\n"
+        }
+    })
+    sendMessage(discordMessage, message)
+}
+
 function checkRedditCommand(message, commandMessage) {
 
     let matches = stringSimilarity.findBestMatch(commandMessage, Object.keys(redditCommands.messages))
@@ -53,5 +77,6 @@ module.exports = {
     sendMessage,
     checkRedditCommand,
     checkDefaultMessages,
-    checkAudioCommand
+    checkAudioCommand,
+    handleHelp
 }

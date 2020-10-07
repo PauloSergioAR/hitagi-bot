@@ -3,47 +3,56 @@
     "show me boobs": {
       "function": "getReddit",
       "subreddit": "boobs",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra tetas"
     },
     "me mostre peitos": {
       "function": "getReddit",
       "subreddit": "boobs",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra tetas"
     },
     "me agrade":{
       "function": "getReddit",
       "subreddit": "hentai",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra hentai"
     },
     "acorde a Elizabeth": {
       "function": "getReddit",
       "subreddit": "yaoi",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra yaoi"
     },
     "agrade a Maryanne": {
       "function": "getReddit",
       "subreddit": "yaoi",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra yaoi"
     },
     "me mostre algo gostoso": {
       "function": "getReddit",
       "subreddit": "yaoi",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra yaoi"
     },
     "me mostre bunda": {
       "function": "getReddit",
       "subreddit": "ass",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra bundas"
     },
     "me mostre a raba": {
       "function": "getReddit",
       "subreddit": "ass",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra bundas"
     },
     "me mostre um plug": {
       "function": "getReddit",
       "subreddit": "buttplug",
-      "customMessage": ""
+      "customMessage": "",
+      "description": "Mostra plugs"
     }
   }
 }

@@ -1,8 +1,13 @@
 const config = require("../util/config.json");
-const { sendMessage, checkRedditCommand, checkDefaultMessages, checkAudioCommand } = require('../util/messageUtil.js')
+const { sendMessage, checkRedditCommand, checkDefaultMessages, checkAudioCommand, handleHelp } = require('../util/messageUtil.js')
 
 async function handleCommand(client, message) {
   let command = message.content.replace(config.prefix, "").replace(config.prefix2, "");
+
+  if(command.includes("help")){
+    handleHelp(message)
+    return
+  }
 
   if (checkDefaultMessages(message, command)) {
     return;
