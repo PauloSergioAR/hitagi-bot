@@ -1,10 +1,51 @@
 const fixed_messages = require("../commands/resources/fixed-messages.json");
 const redditCommands = require("../commands/resources/reddit-commands.json")
 const audioCommands = require("../commands/resources/audio-commands.json")
+const puppeteer = require ("puppeteer")
 const stringSimilarity = require("string-similarity");
+const fs = require('fs')
 
 function sendMessage(message, messageToSend) {
     message.channel.send(messageToSend);
+}
+
+async function handleRunas(discordMessage, command){
+    let [trash, keyword, champ, role] = command.split(" ")
+    if(role == "mid"){
+        role = "middle"
+    }
+    if(role == "sup" || role == "suporte"){
+        role = "support"
+    }
+    if(role == "jg"){
+        role = "jungle"
+    }
+    let commands = command.split(" ")
+    console.log(commands)
+    let url = "https://www.leagueofgraphs.com/champions/runes/" + champ + "/" + role;
+    console.log(url);
+    let browser
+    (async () => {
+        browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        page.setViewport({
+            width: 1280, height: 3400,
+        })
+        await page.goto(url);
+
+        page.waitForSelector('table.perksTableContainerTable').then(() => {
+            
+            let index = 0
+            page.$$('table.perksTableContainerTable').then(elements => elements.forEach(async (img) => {
+                await img.screenshot({path: "runes" + index + ".png"})
+                await discordMessage.channel.send("", {files: ["runes" + index + ".png"]})
+                fs.unlinkSync("runes" + index + ".png")
+                index++
+            }))
+            .catch(error => console.log(error))
+        })
+        
+      })()
 }
 
 function handleHelp(discordMessage){
@@ -78,5 +119,6 @@ module.exports = {
     checkRedditCommand,
     checkDefaultMessages,
     checkAudioCommand,
-    handleHelp
+    handleHelp,
+    handleRunas
 }
