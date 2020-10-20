@@ -27,25 +27,32 @@ async function handleRunas(discordMessage, command){
     let browser
     (async () => {
         browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        page.setViewport({
-            width: 1280, height: 3400,
-        })
-        await page.goto(url);
-
-        page.waitForSelector('table.perksTableContainerTable').then(() => {
-            
-            let index = 0
-            page.$$('table.perksTableContainerTable').then(elements => elements.forEach(async (img) => {
-                await img.screenshot({path: "runes" + index + ".png"})
-                await discordMessage.channel.send("", {files: ["runes" + index + ".png"]})
-                fs.unlinkSync("runes" + index + ".png")
-                index++
-            }))
-            .catch(error => console.log(error))
-        })
-        
-      })()
+        try{
+          const page = await browser.newPage();
+          page.setViewport({
+              width: 1280, height: 3400,
+          })
+          await page.goto(url);
+  
+          page.waitForSelector('table.perksTableContainerTable').then(() => {
+              
+              let index = 0
+              page.$$('table.perksTableContainerTable').then(elements => elements.forEach(async (img) => {
+                  await img.screenshot({path: "runes" + index + ".png"})
+                  await discordMessage.channel.send("", {files: ["runes" + index + ".png"]})
+                  fs.unlinkSync("runes" + index + ".png")
+                  index++
+              }))
+              .catch(error => console.log(error))
+          })
+        } catch (e) {
+          console.log(e)
+        } finally {
+          setTimeout(10000,async () => {
+            await browser.close()
+          })
+        } 
+      })()      
 }
 
 function handleHelp(discordMessage){
